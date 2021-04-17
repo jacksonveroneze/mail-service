@@ -348,3 +348,10 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+.idea
+
+coverage.json
+coverage.opencover.xml
+package-lock.json
+JacksonVeroneze.MailService.sln.DotSettings.user

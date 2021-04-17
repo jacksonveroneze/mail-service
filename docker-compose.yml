@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+    mail_api:
+        container_name: mail_api
+        image: docker.pkg.github.com/jacksonveroneze/mail-service/mail-service:latest
+        restart: always
+        tty: true
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            - ASPNETCORE_URLS=http://+:80
+            - DOTNET_RUNNING_IN_CONTAINER=true
+            - ASPNETCORE_ENVIRONMENT=Production
+            - APP_CONFIG_Urls_Allow_Cors=*;
+            - APP_CONFIG_ApplicationInsights_InstrumentationKey=
+            - APP_CONFIG_Serilog__MinimumLevel__Default=Debug
+            - APP_CONFIG_Serilog__MinimumLevel__Override__Microsoft=Information
+            - APP_CONFIG_Serilog__MinimumLevel__Override__System=Information
+            - APP_CONFIG_SmtpSettings__SmtpHost=in-v3.mailjet.com
+            - APP_CONFIG_SmtpSettings__SmtpPort=587
+            - APP_CONFIG_SmtpSettings__SmtpUser=
+            - APP_CONFIG_SmtpSettings__SmtpPass=
+            - APP_CONFIG_Jaeger__AgentHost=172.17.0.1
+            - APP_CONFIG_Jaeger__AgentPort=6831
+        healthcheck:
+            test: curl --silent --fail http://mail_api/health || exit 1
+            interval: 15s
+            timeout: 3s
+            start_period: 5s
+            retries: 3
+        ports:
+            - 8089:80
+        deploy:
+            resources:
+                limits:
+                    cpus: 0.50
+                    memory: 256M
+                reservations:
+                    memory: 128M
