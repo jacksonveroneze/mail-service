@@ -1,4 +1,4 @@
-using JacksonVeroneze.Dotnet.Common.Cors;
+using JacksonVeroneze.NET.Commons.Cors;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -1,4 +1,4 @@
-using JacksonVeroneze.Dotnet.Common.Swagger;
+using JacksonVeroneze.NET.Commons.Swagger;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace JacksonVeroneze.MailService.Api.Configuration

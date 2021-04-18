@@ -1,5 +1,5 @@
 using System;
-using JacksonVeroneze.Dotnet.Common.OpenTelemetry;
+using JacksonVeroneze.NET.Commons.OpenTelemetry;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

@@ -1,4 +1,4 @@
-using JacksonVeroneze.Dotnet.Common.ApplicationInsights;
+using JacksonVeroneze.NET.Commons.ApplicationInsights;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,7 +9,7 @@ namespace JacksonVeroneze.MailService.Api.Configuration
         public static IServiceCollection AddApplicationInsightsConfiguration(this IServiceCollection services,
             IConfiguration configuration)
         {
-            if (string.IsNullOrEmpty(configuration["Jaeger:ApplicationInsights_InstrumentationKey"]) is false)
+            if (string.IsNullOrEmpty(configuration["ApplicationInsights_InstrumentationKey"]) is false)
                 services.AddApplicationInsightsConfiguration(x =>
                     x.InstrumentationKey = configuration["ApplicationInsights_InstrumentationKey"]);
 

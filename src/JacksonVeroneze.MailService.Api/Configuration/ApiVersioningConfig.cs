@@ -1,4 +1,4 @@
-using JacksonVeroneze.Dotnet.Common.ApiVersioning;
+using JacksonVeroneze.NET.Commons.ApiVersioning;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace JacksonVeroneze.MailService.Api.Configuration

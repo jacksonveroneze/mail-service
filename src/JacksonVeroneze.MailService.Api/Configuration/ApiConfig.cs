@@ -1,7 +1,7 @@
-using JacksonVeroneze.Dotnet.Common.Culture;
-using JacksonVeroneze.Dotnet.Common.HealthCheck;
-using JacksonVeroneze.Dotnet.Common.Routing;
-using JacksonVeroneze.Dotnet.Common.Swagger;
+using JacksonVeroneze.NET.Commons.Culture;
+using JacksonVeroneze.NET.Commons.HealthCheck;
+using JacksonVeroneze.NET.Commons.Routing;
+using JacksonVeroneze.NET.Commons.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;

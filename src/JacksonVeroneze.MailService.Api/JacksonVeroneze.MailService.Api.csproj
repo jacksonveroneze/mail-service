@@ -6,8 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="2.11.1" />
-
-    <PackageReference Include="JacksonVeroneze.Dotnet.Common" Version="$(CommonsVersion)" />
+    <PackageReference Include="JacksonVeroneze.NET.Commons" Version="$(CommonsVersion)" />
   </ItemGroup>
 
 </Project>
