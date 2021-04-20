@@ -22,7 +22,7 @@ namespace JacksonVeroneze.MailService.Api
                 Log.Logger = Logger.FactoryLogger(x =>
                 {
                     x.Environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-                    x.ApplicationName = "Stock Service";
+                    x.ApplicationName = "Mail Service";
                     x.CurrentDirectory = Directory.GetCurrentDirectory();
                 });
 

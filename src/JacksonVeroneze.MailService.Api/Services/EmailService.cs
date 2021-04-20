@@ -16,7 +16,7 @@ namespace JacksonVeroneze.MailService.Api.Services
         public EmailService(IOptions<SmtpSettings> appSettings)
             => _smtpSettings = appSettings.Value;
 
-        public async Task Send(MailRequest mailRequest)
+        public async Task<MailResponse> Send(MailRequest mailRequest)
         {
             MimeMessage email = new();
             email.From.Add(MailboxAddress.Parse(mailRequest.From));
@@ -29,6 +29,8 @@ namespace JacksonVeroneze.MailService.Api.Services
             await smtp.AuthenticateAsync(_smtpSettings.SmtpUser, _smtpSettings.SmtpPass);
             await smtp.SendAsync(email);
             await smtp.DisconnectAsync(true);
+
+            return new MailResponse();
         }
     }
 }

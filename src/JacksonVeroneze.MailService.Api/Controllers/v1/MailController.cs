@@ -40,9 +40,9 @@ namespace JacksonVeroneze.MailService.Api.Controllers.v1
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
         public async Task<ActionResult<MailResponse>> Send([FromBody] MailRequest mailRequest)
         {
-            await _emailService.Send(mailRequest);
+            MailResponse response = await _emailService.Send(mailRequest);
 
-            return NoContent();
+            return Ok(response);
         }
     }
 }
