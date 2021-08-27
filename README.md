@@ -1,4 +1,4 @@
-![Image](https://github.com/jacksonveroneze/mail-service/blob/main/assets/logo.png)
+![Image](https://raw.githubusercontent.com/jacksonveroneze/mail-service/main/assets/logo.png)
 
 # MailService
 
@@ -6,8 +6,6 @@ API para envio de e-mail desenvolvida em .NET 5
 
 ![GitHub](https://img.shields.io/github/license/jacksonveroneze/mail-service?logoColor=%20)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jacksonveroneze/mail-service)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jacksonveroneze_mail-service&metric=alert_status)](https://sonarcloud.io/dashboard?id=jacksonveroneze_mail-service)
-
 
 | Branch        | Main           | Develop  |
 | ------------- |:-------------:| -----:|
