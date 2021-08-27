@@ -1,4 +1,4 @@
-![Image](https://github.com/jacksonveroneze/mail-service/blob/main/assets/mail.png)
+![Image](https://github.com/jacksonveroneze/mail-service/blob/main/assets/logo.png)
 
 # MailService
 
