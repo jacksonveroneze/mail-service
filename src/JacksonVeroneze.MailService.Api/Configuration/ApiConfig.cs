@@ -41,8 +41,6 @@ namespace JacksonVeroneze.MailService.Api.Configuration
                 .UseHealthCheckConfiguration()
                 .UseSerilogRequestLogging()
                 .UseRouting()
-                .UseAuthentication()
-                .UseAuthorization()
                 .UseSwaggerConfiguration(provider)
                 .UseHangfireDashboard()
                 .UseEndpoints(endpoints => endpoints.MapControllers());
