@@ -1,7 +1,8 @@
-using JacksonVeroneze.NET.Commons.Culture;
-using JacksonVeroneze.NET.Commons.HealthCheck;
-using JacksonVeroneze.NET.Commons.Routing;
-using JacksonVeroneze.NET.Commons.Swagger;
+using JacksonVeroneze.NET.Commons.AspNet.Cors;
+using JacksonVeroneze.NET.Commons.AspNet.Culture;
+using JacksonVeroneze.NET.Commons.AspNet.HealthCheck;
+using JacksonVeroneze.NET.Commons.AspNet.Routing;
+using JacksonVeroneze.NET.Commons.AspNet.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
@@ -13,18 +14,15 @@ namespace JacksonVeroneze.MailService.Api.Configuration
 {
     public static class ApiConfig
     {
-        private const string CorsPolicyName = "CorsPolicy";
-
         public static IServiceCollection AddApiConfiguration(this IServiceCollection services,
             IConfiguration configuration,
             IHostEnvironment hostEnvironment)
         {
             services.AddRoutingConfiguration()
-                .AddCorsConfiguration(configuration, CorsPolicyName)
+                .AddCorsConfiguration(configuration)
                 .AddHealthCheckConfiguration()
                 .AddDependencyInjectionConfiguration(configuration)
                 .AddSwaggerConfiguration()
-                .AddApplicationInsightsConfiguration(configuration)
                 .AddOpenTelemetryTracingConfiguration(configuration, hostEnvironment)
                 .AddVersioningConfigConfiguration()
                 .AddControllers()
@@ -34,19 +32,17 @@ namespace JacksonVeroneze.MailService.Api.Configuration
         }
 
         public static IApplicationBuilder UseApiConfiguration(this IApplicationBuilder app,
-            IApiVersionDescriptionProvider provider, IConfiguration configuration)
+            IApiVersionDescriptionProvider provider)
         {
             app.UseCultureConfiguration()
-                .UseCors(CorsPolicyName)
+                .UseCorsConfiguration()
                 .UseHealthCheckConfiguration()
                 .UseSerilogRequestLogging()
                 .UseRouting()
                 .UseAuthentication()
                 .UseAuthorization()
                 .UseSwaggerConfiguration(provider)
-                .UseEndpoints(endpoints =>
-                    endpoints.MapControllers()
-                );
+                .UseEndpoints(endpoints => endpoints.MapControllers());
 
             return app;
         }

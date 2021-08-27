@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: api-mail-deployment
+    namespace: mail-application
+    labels:
+        app: api-mail
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: api-mail
+    template:
+        metadata:
+            labels:
+                app: api-mail
+        spec:
+            containers:
+                - name: api
+                  image: jacksonveroneze/mail-service:latest
+                  imagePullPolicy: Always
+                  resources:
+                    requests:
+                      memory: "5Mi"
+                      cpu: "0.1"
+                    limits:
+                      memory: "60Mi"
+                      cpu: "0.2"
+                  ports:
+                      - containerPort: 80
+                  env:
+                      - name: ASPNETCORE_URLS
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: ASPNETCORE_URLS
+
+                      - name: DOTNET_RUNNING_IN_CONTAINER
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: DOTNET_RUNNING_IN_CONTAINER
+
+                      - name: ASPNETCORE_ENVIRONMENT
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: ASPNETCORE_ENVIRONMENT
+
+                      - name: APP_CONFIG_Urls_Allow_Cors
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_Urls_Allow_Cors
+
+                      - name: APP_CONFIG_SmtpSettings__SmtpHost
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_SmtpSettings__SmtpHost
+
+                      - name: APP_CONFIG_SmtpSettings__SmtpPort
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_SmtpSettings__SmtpPort
+
+                      -   name: APP_CONFIG_SmtpSettings__SmtpUser
+                          valueFrom:
+                              secretKeyRef:
+                                  name: api-mail-secret
+                                  key: APP_CONFIG_SmtpSettings__SmtpUser
+
+                      - name: APP_CONFIG_SmtpSettings__SmtpPass
+                        valueFrom:
+                            secretKeyRef:
+                                name: api-mail-secret
+                                key: APP_CONFIG_SmtpSettings__SmtpPass
+
+                      - name: APP_CONFIG_Jaeger__Enabled
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_Jaeger__Enabled
+
+                      - name: APP_CONFIG_Jaeger__AgentHost
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_Jaeger__AgentHost
+
+                      - name: APP_CONFIG_Jaeger__AgentPort
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_Jaeger__AgentPort

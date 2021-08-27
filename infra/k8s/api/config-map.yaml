@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: api-mail-configmap
+    namespace: mail-application
+data:
+    ASPNETCORE_URLS: http://+:80
+    DOTNET_RUNNING_IN_CONTAINER: true
+    ASPNETCORE_ENVIRONMENT: Production
+    APP_CONFIG_Urls_Allow_Cors: *
+    APP_CONFIG_SmtpSettings__SmtpHost: in-v3.mailjet.com
+    APP_CONFIG_SmtpSettings__SmtpPort: 587
+    APP_CONFIG_Jaeger__Enabled: true
+    APP_CONFIG_Jaeger__AgentHost: 172.17.0.1
+    APP_CONFIG_Jaeger__AgentPort: 6831

@@ -35,12 +35,13 @@ namespace JacksonVeroneze.MailService.Api.Controllers.v1
         /// <param name="mailRequest"></param>
         /// <returns></returns>
         [HttpPost]
-        //[Authorize("mail:send")]
         [Produces(MediaTypeNames.Application.Json)]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
         public async Task<ActionResult<MailResponse>> Send([FromBody] MailRequest mailRequest)
         {
             MailResponse response = await _emailService.Send(mailRequest);
+
+            _logger.LogInformation("Send mail");
 
             return Ok(response);
         }

@@ -22,7 +22,7 @@ namespace JacksonVeroneze.MailService.Api.Services
             email.From.Add(MailboxAddress.Parse(mailRequest.From));
             email.To.Add(MailboxAddress.Parse(mailRequest.To));
             email.Subject = mailRequest.Subject;
-            email.Body = new TextPart(TextFormat.Html) {Text = mailRequest.Text};
+            email.Body = new TextPart(TextFormat.Html) { Text = mailRequest.Text };
 
             using SmtpClient smtp = new();
             await smtp.ConnectAsync(_smtpSettings.SmtpHost, _smtpSettings.SmtpPort, SecureSocketOptions.StartTls);

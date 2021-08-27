@@ -33,6 +33,6 @@ namespace JacksonVeroneze.MailService.Api
             => services.AddApiConfiguration(_configuration, _hostEnvironment);
 
         public void Configure(IApplicationBuilder app, IApiVersionDescriptionProvider provider)
-            => app.UseApiConfiguration(provider, _configuration);
+            => app.UseApiConfiguration(provider);
     }
 }
