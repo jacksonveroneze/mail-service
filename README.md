@@ -1,15 +1,15 @@
 ![Image](https://raw.githubusercontent.com/jacksonveroneze/mail-service/main/assets/logo.png)
 
-# MailService
+# Mail Service
 
 API para envio de e-mail desenvolvida em .NET 5
 
 ![GitHub](https://img.shields.io/github/license/jacksonveroneze/mail-service?logoColor=%20)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jacksonveroneze/mail-service)
 
-| Branch        | Main           | Develop  |
-| ------------- |:-------------:| -----:|
-| Status CI      | [![Pipeline](https://github.com/jacksonveroneze/mail-service/actions/workflows/pipeline-commit.yml/badge.svg?branch=main)](https://github.com/jacksonveroneze/mail-service/actions/workflows/pipeline-commit.yml) | [![Pipeline](https://github.com/jacksonveroneze/mail-service/actions/workflows/pipeline-commit.yml/badge.svg?branch=main)](https://github.com/jacksonveroneze/mail-service/actions/workflows/pipeline-commit.yml) |
+| Branch        | Main           |
+| ------------- |:-------------:|
+| Status CI      | [![Create Release](https://github.com/jacksonveroneze/mail-service/actions/workflows/pipeline-create-release.yml/badge.svg)](https://github.com/jacksonveroneze/mail-service/actions/workflows/pipeline-create-release.yml) |
 
 
 ## 💻 Sobre o projeto
@@ -40,12 +40,12 @@ Tabela de conteúdos
 
 ## 🎲 Rodar com Docker
 
-```dockerfile
+```yaml
 version: "3.8"
 services:
-    mail_api:
-        container_name: mail_api
-        image: docker.pkg.github.com/jacksonveroneze/mail-service/mail-service:latest
+    mail_service:
+        container_name: mail-service
+        image: jacksonveroneze/mail-service:latest
         restart: always
         tty: true
         environment:
@@ -53,8 +53,7 @@ services:
             - DOTNET_RUNNING_IN_CONTAINER=true
             - ASPNETCORE_ENVIRONMENT=Production
             - APP_CONFIG_Urls_Allow_Cors=*;
-            - APP_CONFIG_ApplicationInsights_InstrumentationKey=
-            - APP_CONFIG_Serilog__MinimumLevel__Default=Debug
+            - APP_CONFIG_Serilog__MinimumLevel__Default=Information
             - APP_CONFIG_Serilog__MinimumLevel__Override__Microsoft=Information
             - APP_CONFIG_Serilog__MinimumLevel__Override__System=Information
             - APP_CONFIG_SmtpSettings__SmtpHost=in-v3.mailjet.com
@@ -65,7 +64,7 @@ services:
             - APP_CONFIG_Jaeger__AgentHost=172.17.0.1
             - APP_CONFIG_Jaeger__AgentPort=6831
         healthcheck:
-            test: curl --silent --fail http://mail_api/health || exit 1
+            test: curl --silent --fail http://mail_service/health || exit 1
             interval: 60s
             timeout: 3s
             start_period: 5s
@@ -75,8 +74,8 @@ services:
         logging:
             driver: "json-file"
             options:
-                max-file: 2
-                max-size: 1m
+                max-file: "2"
+                max-size: "1m"
         deploy:
             resources:
                 limits:
@@ -84,7 +83,6 @@ services:
                     memory: 256M
                 reservations:
                     memory: 128M
-
 ```
 
 | Variável   |      Descrição      |  Valor |

@@ -1,5 +1,4 @@
 ﻿using System.Net.Mime;
-using System.Threading.Tasks;
 using Hangfire;
 using JacksonVeroneze.MailService.Api.Models;
 using JacksonVeroneze.MailService.Api.Services;
@@ -17,18 +16,13 @@ namespace JacksonVeroneze.MailService.Api.Controllers.v1
     public class MailController : ControllerBase
     {
         private readonly ILogger<MailController> _logger;
-        private readonly IEmailService _emailService;
 
         /// <summary>
         /// Method responsible for initialize controller.
         /// </summary>
         /// <param name="logger"></param>
-        /// <param name="emailService"></param>
-        public MailController(ILogger<MailController> logger, IEmailService emailService)
-        {
-            _logger = logger;
-            _emailService = emailService;
-        }
+        public MailController(ILogger<MailController> logger)
+            => _logger = logger;
 
         /// <summary>
         /// Method responsible for action: Send.
@@ -40,9 +34,7 @@ namespace JacksonVeroneze.MailService.Api.Controllers.v1
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
         public ActionResult<MailResponse> Send([FromBody] MailRequest mailRequest)
         {
-            //MailResponse response = await _emailService.Send(mailRequest);
-
-            BackgroundJob.Enqueue<EmailService>(x => x.SendAsync(mailRequest));
+            BackgroundJob.Enqueue<IEmailService>(x => x.SendAsync(mailRequest));
 
             _logger.LogInformation("Send mail");
 

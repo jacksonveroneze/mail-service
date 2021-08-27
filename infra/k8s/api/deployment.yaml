@@ -24,8 +24,8 @@ spec:
                       memory: "5Mi"
                       cpu: "0.1"
                     limits:
-                      memory: "60Mi"
-                      cpu: "0.2"
+                      memory: "70Mi"
+                      cpu: "0.1"
                   ports:
                       - containerPort: 80
                   env:
