@@ -1,3 +1,4 @@
+using Hangfire;
 using JacksonVeroneze.NET.Commons.AspNet.Cors;
 using JacksonVeroneze.NET.Commons.AspNet.Culture;
 using JacksonVeroneze.NET.Commons.AspNet.HealthCheck;
@@ -25,6 +26,7 @@ namespace JacksonVeroneze.MailService.Api.Configuration
                 .AddSwaggerConfiguration()
                 .AddOpenTelemetryTracingConfiguration(configuration, hostEnvironment)
                 .AddVersioningConfigConfiguration()
+                .AddHangfireConfiguration()
                 .AddControllers()
                 .AddJsonOptionsSerializeConfiguration();
 
@@ -42,6 +44,7 @@ namespace JacksonVeroneze.MailService.Api.Configuration
                 .UseAuthentication()
                 .UseAuthorization()
                 .UseSwaggerConfiguration(provider)
+                .UseHangfireDashboard()
                 .UseEndpoints(endpoints => endpoints.MapControllers());
 
             return app;

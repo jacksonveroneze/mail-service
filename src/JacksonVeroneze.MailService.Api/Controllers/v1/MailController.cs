@@ -1,5 +1,6 @@
 ﻿using System.Net.Mime;
 using System.Threading.Tasks;
+using Hangfire;
 using JacksonVeroneze.MailService.Api.Models;
 using JacksonVeroneze.MailService.Api.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -37,13 +38,15 @@ namespace JacksonVeroneze.MailService.Api.Controllers.v1
         [HttpPost]
         [Produces(MediaTypeNames.Application.Json)]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
-        public async Task<ActionResult<MailResponse>> Send([FromBody] MailRequest mailRequest)
+        public ActionResult<MailResponse> Send([FromBody] MailRequest mailRequest)
         {
-            MailResponse response = await _emailService.Send(mailRequest);
+            //MailResponse response = await _emailService.Send(mailRequest);
+
+            BackgroundJob.Enqueue<EmailService>(x => x.SendAsync(mailRequest));
 
             _logger.LogInformation("Send mail");
 
-            return Ok(response);
+            return Ok(new MailResponse());
         }
     }
 }

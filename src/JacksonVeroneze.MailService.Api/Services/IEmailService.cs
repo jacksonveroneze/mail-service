@@ -5,6 +5,6 @@ namespace JacksonVeroneze.MailService.Api.Services
 {
     public interface IEmailService
     {
-        Task<MailResponse> Send(MailRequest mailRequest);
+        Task<MailResponse> SendAsync(MailRequest mailRequest);
     }
 }
