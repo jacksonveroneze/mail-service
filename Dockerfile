@@ -3,6 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS build-env
 WORKDIR /app
 
 ADD ./src app
+ADD ./Directory.Build.props app
 
 RUN dotnet restore app/JacksonVeroneze.MailService.Api/JacksonVeroneze.MailService.Api.csproj
 
