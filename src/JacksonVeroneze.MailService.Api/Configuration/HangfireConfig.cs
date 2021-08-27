@@ -1,4 +1,5 @@
 using Hangfire;
+using Hangfire.Dashboard;
 using Hangfire.MemoryStorage;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +18,14 @@ namespace JacksonVeroneze.MailService.Api.Configuration
             services.AddHangfireServer();
 
             return services;
+        }
+    }
+
+    public class DashboardNoAuthorizationFilter : IDashboardAuthorizationFilter
+    {
+        public bool Authorize(DashboardContext dashboardContext)
+        {
+            return true;
         }
     }
 }

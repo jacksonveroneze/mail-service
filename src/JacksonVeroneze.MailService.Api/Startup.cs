@@ -35,4 +35,5 @@ namespace JacksonVeroneze.MailService.Api
         public void Configure(IApplicationBuilder app, IApiVersionDescriptionProvider provider)
             => app.UseApiConfiguration(provider);
     }
+
 }

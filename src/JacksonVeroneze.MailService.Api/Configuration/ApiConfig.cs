@@ -42,7 +42,11 @@ namespace JacksonVeroneze.MailService.Api.Configuration
                 .UseSerilogRequestLogging()
                 .UseRouting()
                 .UseSwaggerConfiguration(provider)
-                .UseHangfireDashboard()
+                .UseHangfireDashboard("/hangfire", new DashboardOptions()
+                {
+                    IgnoreAntiforgeryToken = true,
+                    Authorization = new[] { new DashboardNoAuthorizationFilter() }
+                })
                 .UseEndpoints(endpoints => endpoints.MapControllers());
 
             return app;
