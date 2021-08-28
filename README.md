@@ -63,6 +63,8 @@ services:
             - APP_CONFIG_Jaeger__Enabled=true
             - APP_CONFIG_Jaeger__AgentHost=172.17.0.1
             - APP_CONFIG_Jaeger__AgentPort=6831
+            - APP_CONFIG_Hangfire__Storage=Redis
+            - APP_CONFIG_Hangfire__RedisConnectionString=redis:6379
         healthcheck:
             test: curl --silent --fail http://mail_service/health || exit 1
             interval: 60s
