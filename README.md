@@ -111,6 +111,7 @@ As seguintes libs/ferramentas foram usadas na construção da aplicação
 - [ASP.NET 5](https://dotnet.microsoft.com/)
 - [ASP.NET WebApi 5](https://dotnet.microsoft.com/apps/aspnet)
 - [Serilog](https://serilog.net/)
+- [Hangfire](https://www.hangfire.io/)
 
 As seguintes ferramentas foram usadas na infra da aplicação
 
