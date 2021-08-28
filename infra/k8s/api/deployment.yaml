@@ -94,3 +94,47 @@ spec:
                             configMapKeyRef:
                                 name: api-mail-configmap
                                 key: APP_CONFIG_Jaeger__AgentPort
+
+                      - name: APP_CONFIG_Hangfire__Storage
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_Hangfire__Storage
+
+                      - name: APP_CONFIG_Hangfire__RedisConnectionString
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_Hangfire__RedisConnectionString
+
+                      - name: APP_CONFIG_Serilog__MinimumLevel__Default
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_Serilog__MinimumLevel__Default
+
+                      - name: APP_CONFIG_Serilog__MinimumLevel__Override__Microsoft
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_Serilog__MinimumLevel__Override__Microsoft
+
+
+                      - name: APP_CONFIG_Serilog__MinimumLevel__Override__System
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_Serilog__MinimumLevel__Override__System
+
+
+                      - name: APP_CONFIG_Serilog__MinimumLevel__Override__Hangfire
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_Serilog__MinimumLevel__Override__Hangfire
+
+                      - name: APP_CONFIG_Hangfire__RedisConnectionString
+                        valueFrom:
+                            configMapKeyRef:
+                                name: api-mail-configmap
+                                key: APP_CONFIG_Hangfire__RedisConnectionString
