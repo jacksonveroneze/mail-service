@@ -26,7 +26,7 @@ namespace JacksonVeroneze.MailService.Api.Configuration
                 .AddSwaggerConfiguration()
                 .AddOpenTelemetryTracingConfiguration(configuration, hostEnvironment)
                 .AddVersioningConfigConfiguration()
-                .AddHangfireConfiguration()
+                .AddHangfireConfiguration(configuration)
                 .AddControllers()
                 .AddJsonOptionsSerializeConfiguration();
 
@@ -42,11 +42,12 @@ namespace JacksonVeroneze.MailService.Api.Configuration
                 .UseSerilogRequestLogging()
                 .UseRouting()
                 .UseSwaggerConfiguration(provider)
-                .UseHangfireDashboard("/hangfire", new DashboardOptions()
-                {
-                    IgnoreAntiforgeryToken = true,
-                    Authorization = new[] { new DashboardNoAuthorizationFilter() }
-                })
+                .UseHangfireDashboard("/hangfire",
+                    new DashboardOptions()
+                    {
+                        IgnoreAntiforgeryToken = true,
+                        Authorization = new[] { new HangfireDashboardNoAuthorizationFilter() }
+                    })
                 .UseEndpoints(endpoints => endpoints.MapControllers());
 
             return app;
