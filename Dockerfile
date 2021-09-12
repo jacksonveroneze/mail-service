@@ -10,6 +10,9 @@ RUN dotnet restore app/JacksonVeroneze.MailService.Api/JacksonVeroneze.MailServi
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine
 
+ENV ASPNETCORE_URLS=http://+:80
+ENV DOTNET_RUNNING_IN_CONTAINER=true
+ENV ASPNETCORE_ENVIRONMENT=Production
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 ENV TZ=America/Sao_Paulo
 ENV LANG pt-BR

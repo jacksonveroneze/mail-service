@@ -1,6 +1,0 @@
-version: "3.8"
-services:
-    mail_api:
-        build:
-            context: .
-            dockerfile: Dockerfile
